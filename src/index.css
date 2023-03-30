@@ -1,0 +1,19 @@
+:root {
+  --color-night: #181922;
+  --color-dark: #24262d;
+  --color-font: #fff;
+  --size-initial: 20px;
+  --size-radius: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 1.15;
+  color: var(--color-font);
+  background-color: var(--color-night);
+
+}

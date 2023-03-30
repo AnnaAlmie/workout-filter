@@ -1,0 +1,25 @@
+.card {
+    flex: 1 0 300px;
+    border: 1px solid transparent;
+    border-radius: var(--size-radius);
+}
+
+.card__content {
+    padding: var(--size-initial);
+}
+
+.card__content-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    aspect-ratio: 16/9;
+    border-top-left-radius: var(--size-radius);
+    border-top-right-radius: var(--size-radius);
+}
