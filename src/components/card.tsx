@@ -1,18 +1,19 @@
 import './card.css';
 import { types, levels } from '../helpers/filters';
+import YouTube, { YouTubeProps } from 'react-youtube';
 
 export default function Card(props: any) {
 
     return (
         <div className='card' style={{ borderColor: levels[props.card.level].color }}>
-            <iframe allowFullScreen
-                src={`https://www.youtube.com/embed/${props.card.url}`}></iframe>
+            <YouTube videoId={props.card.url} />
+
             {/* content  */}
             <div className='card__content'>
 
                 <div className='card__content-flex'>
                     {/* types  */}
-                    <div>
+                    <div className='card__content-flex-types'>
                         {props.card.type.map((item: number) => {
                             return <span key={item}>
                                 #{types[item]}&nbsp;

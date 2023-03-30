@@ -1,23 +1,21 @@
 .container__main {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
     margin: var(--size-initial);
-    padding: var(--size-initial);
     border-radius: var(--size-radius);
     background-color: var(--color-dark);
 }
 
 .container__filters {
+    padding: var(--size-initial);
     flex: 1 0 200px;
 }
 
 .conteiner__cards {
-    flex: 4 0 calc(100% - 200px);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: stretch;
+    padding: var(--size-initial);
+    flex: 4 0 calc(100% - 200px - var(--size-initial)*4);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: calc(var(--size-initial) / 2);
 }

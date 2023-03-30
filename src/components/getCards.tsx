@@ -2,7 +2,7 @@ import { useState, useEffect, SetStateAction } from 'react'
 import { supabase } from '../utils/supabaseClient';
 import Card from './card'
 
-type Videos = {
+interface IVideos {
     id: number;
     author: string;
     level: number;
@@ -11,8 +11,8 @@ type Videos = {
     url: string;
 };
 
-export default function gatCards() {
-    let [cards, setCards] = useState<any[]>([]);
+export default function getCards() {
+    let [cards, setCards] = useState<IVideos[]>([]);
     let [error, setError] = useState<string | null | undefined>(null);
 
     useEffect(() => {
@@ -39,11 +39,7 @@ export default function gatCards() {
     return (
         <div className="conteiner__cards">
             {
-                cards.map(card => {
-                    return <>
-                        <Card card={card} key={card.id} />
-                    </>
-                })
+                cards.map(card => <Card card={card} key={card.id.toString()} />)
             }
         </div>
     )

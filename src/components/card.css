@@ -1,7 +1,13 @@
 .card {
-    flex: 1 0 300px;
     border: 1px solid transparent;
     border-radius: var(--size-radius);
+    transition: all 0.2s ease-in-out;
+    will-change: transform;
+}
+
+.card:hover {
+    letter-spacing: 1.5px;
+    transform: scale(0.98);
 }
 
 .card__content {
@@ -11,6 +17,14 @@
 .card__content-flex {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card__content-flex-types {
+    max-width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     align-items: flex-start;
 }
 
