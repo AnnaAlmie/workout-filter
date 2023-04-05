@@ -1,12 +1,13 @@
 import './card.css';
 import { types, levels } from '../helpers/filters';
-import YouTube, { YouTubeProps } from 'react-youtube';
+import YouTube from 'react-youtube';
+import { motion } from 'framer-motion';
 
-export default function Card(props: any) {
+export default function Card({ card }: any) {
 
     return (
-        <div className='card' style={{ borderColor: levels[props.card.level].color }}>
-            <YouTube videoId={props.card.url} />
+        <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }} exit={{ opacity: 0 }} layout className='card' style={{ borderColor: levels[card.level].color }}>
+            <YouTube videoId={card.url} />
 
             {/* content  */}
             <div className='card__content'>
@@ -14,7 +15,7 @@ export default function Card(props: any) {
                 <div className='card__content-flex'>
                     {/* types  */}
                     <div className='card__content-flex-types'>
-                        {props.card.type.map((item: number) => {
+                        {card.type.map((item: number) => {
                             return <span key={item}>
                                 #{types[item]}&nbsp;
                             </span>
@@ -23,12 +24,12 @@ export default function Card(props: any) {
 
                     {/* level  */}
                     <div>
-                        <b style={{ color: levels[props.card.level].color }}>
-                            {levels[props.card.level].level}
+                        <b style={{ color: levels[card.level].color }}>
+                            {levels[card.level].level}
                         </b>
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

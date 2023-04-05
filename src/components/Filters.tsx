@@ -1,5 +1,5 @@
-import { types, levels } from '../helpers/filters';
 import "./Filters.css";
+import { types, levels } from '../helpers/filters';
 
 let sortedTypes = types.sort((a, b) => (a > b) ? 1 : -1);
 
@@ -11,7 +11,7 @@ export default function Filters() {
             {
                 levels.map(level => {
                     return (
-                        <div className='container__filters__group' key={level.toString()}>
+                        <div className='container__filters__group' key={level.level}>
                             <input type={"checkbox"} id={level.level} />
                             <label htmlFor={level.level}>{level.level}</label>
                         </div>)
@@ -22,7 +22,7 @@ export default function Filters() {
             {
                 sortedTypes.map(type => {
                     return (
-                        <div className='container__filters__group' key={type.toString()}>
+                        <div className='container__filters__group' key={type}>
                             <input type={"checkbox"} id={type} />
                             <label htmlFor={type}>{type}</label>
                         </div>)

@@ -1,8 +1,9 @@
 import { useState, useEffect, SetStateAction } from 'react'
 import { supabase } from '../utils/supabaseClient';
-import Card from './card'
+import Card from './card';
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface IVideos {
+type dataVideos = {
     id: number;
     author: string;
     level: number;
@@ -12,7 +13,7 @@ interface IVideos {
 };
 
 export default function getCards() {
-    let [cards, setCards] = useState<IVideos[]>([]);
+    let [cards, setCards] = useState<dataVideos[]>([]);
     let [error, setError] = useState<string | null | undefined>(null);
 
     useEffect(() => {
@@ -37,10 +38,10 @@ export default function getCards() {
         )
     }
     return (
-        <div className="conteiner__cards">
-            {
+        <motion.div layout className="conteiner__cards">
+            <AnimatePresence>{
                 cards.map(card => <Card card={card} key={card.id.toString()} />)
-            }
-        </div>
+            }</AnimatePresence>
+        </motion.div>
     )
 }
