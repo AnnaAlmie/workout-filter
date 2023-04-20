@@ -10,10 +10,12 @@
 .container__filters {
     padding: var(--size-initial);
     flex: 1 0 200px;
+    max-width: 200px;
 }
 
 .container {
     padding: var(--size-initial);
+    width: 100%;
 }
 
 .container__cards {

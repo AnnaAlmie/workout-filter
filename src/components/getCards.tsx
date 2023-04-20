@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { supabase, TData } from '../utils/supabaseClient';
+import cardsInner from "../helpers/cardsDataInner.json"
 
 import Card from './card';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -23,8 +24,12 @@ export default function getCards() {
             setCards(data as TData[])
         }
     }
-
+    function setInnerData() {
+        setCards(cardsInner as TData[])
+        setError('')
+    }
     if (error) {
+        {/* TODO: move to child component */ }
         return (
             <div className="container">
                 <div>
@@ -34,11 +39,10 @@ export default function getCards() {
                 <div>
                     Якщо ви побачили цю помилку, то скоріш за все безкоштовна версія supabase призупинила свою роботу.
                 </div>
-                {/* TODO: download manually
                 <div>
                     Але ви можете подивитись варіант з json файлу
                 </div>
-                <button>Завантажити</button> */}
+                <button onClick={setInnerData}>Завантажити</button>
             </div>
         )
     }
