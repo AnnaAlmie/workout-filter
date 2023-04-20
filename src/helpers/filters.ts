@@ -1,4 +1,4 @@
-export const types = [
+export const types: string[] = [
     /* 0 */ "relaxing",
     /* 1 */ "mobility",
     /* 2 */ "stretching",
@@ -15,7 +15,13 @@ export const types = [
     /* 13 */ "booty",
 
 ];
-export const levels = [
+
+interface ILevels {
+    level: "beginner" | "normal" | "sweat"
+    color: string
+}
+
+export const levels: ILevels[] = [
     {
         // 0
         level: "beginner",

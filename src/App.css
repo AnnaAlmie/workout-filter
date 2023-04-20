@@ -12,8 +12,11 @@
     flex: 1 0 200px;
 }
 
-.conteiner__cards {
+.container {
     padding: var(--size-initial);
+}
+
+.container__cards {
     flex: 4 0 calc(100% - 200px - var(--size-initial)*4);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
