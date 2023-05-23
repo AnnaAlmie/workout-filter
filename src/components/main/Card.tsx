@@ -1,6 +1,6 @@
-import './card.css';
-import { types, levels } from '../helpers/filters';
-import { TData } from '../utils/supabaseClient';
+import './card.scss';
+import { types, levels } from '~/helpers/filters';
+import { TData } from '~/utils/supabaseClient';
 import YouTube from 'react-youtube';
 import { motion } from 'framer-motion';
 
@@ -15,6 +15,7 @@ export default function Card({ card }: TCard) {
 
             {/* content  */}
             <div className='card__content'>
+
                 <div className='card__content-flex'>
                     {/* types  */}
                     <div className='card__content-flex-types'>

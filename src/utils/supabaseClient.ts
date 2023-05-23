@@ -7,12 +7,10 @@ export const supabase = createClient(
 
 type TData = {
     id: string,
-    author: string,
-    title: string,
     url: string,
     type: number[],
-    level: number
-
+    level: number,
+    editable: boolean
 }
 export type {
     PostgrestResponse,

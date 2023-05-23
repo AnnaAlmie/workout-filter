@@ -1,13 +1,13 @@
-import './App.css';
-import Filters from './components/Filters';
-import GetCards from './components/getCards';
+import './app.scss';
+import Aside from '~/components/aside/Aside';
+import Main from '~/components/main/Main';
 
 export default function App() {
 
   return (
     <div className="container__main">
-      <Filters />
-      <GetCards />
+      <Aside />
+      <Main />
     </div>
   )
 }

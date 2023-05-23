@@ -1,0 +1,27 @@
+.container {
+    padding: var(--size-initial);
+    width: 100%;
+
+    &__main {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        margin: var(--size-initial);
+        border-radius: var(--size-radius);
+        background-color: var(--color-dark);
+    }
+
+    &__aside {
+        padding: var(--size-initial);
+        flex: 1 0 200px;
+        max-width: 200px;
+    }
+
+    &__cards {
+        flex: 4 0 calc(100% - 200px - var(--size-initial)*4);
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        grid-template-rows: max-content;
+        gap: calc(var(--size-initial) / 2);
+    }
+}
