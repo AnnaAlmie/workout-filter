@@ -14,7 +14,6 @@
     &__aside {
         padding: var(--size-initial);
         flex: 1 0 200px;
-        max-width: 200px;
     }
 
     &__cards {
@@ -23,5 +22,11 @@
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
         grid-template-rows: max-content;
         gap: calc(var(--size-initial) / 2);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .container__cards {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
     }
 }

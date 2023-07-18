@@ -10,7 +10,7 @@ type TData = {
     url: string,
     type: number[],
     level: number,
-    editable: boolean
+    enable: boolean
 }
 export type {
     PostgrestResponse,

@@ -1,39 +1,103 @@
-.container__filters__title {
-    margin: 10px 0;
-    font-weight: 400;
-    text-align: right;
-    border-bottom: 1px solid var(--color-font);
-}
+.container__filters {
+    max-width: 200px;
 
-.container__filters__group {
-    line-height: 1.7;
-}
+    &__title {
+        margin: 10px 0;
+        font-weight: 400;
+        text-align: right;
+        border-bottom: 1px solid var(--color-font);
+    }
 
-.container__filters__group label {
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    &__group {
+        line-height: 1.7;
+
+        label {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            top: -1.3px;
+            margin-left: 10px;
+
+            &:hover {
+                opacity: .5;
+            }
+        }
+    }
 }
 
 input[type=checkbox]:checked {
     accent-color: red;
 }
 
-.container__filters__group label:hover {
-    opacity: .5;
-}
-
 @media screen and (max-width: 767px) {
-    .container__filters {
-        --size-pad: 70px;
+    .no-scroll {
+        overflow-y: hidden;
+    }
+
+    $size: 50px;
+
+    .button__close {
+        position: absolute;
+        top: 0;
+        right: - $size;
+        width: $size;
+        height: $size;
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: #fff;
+            width: 80%;
+            height: 3px;
+            margin: 5px;
+            transition: all 200ms ease-in-out;
+        }
+
+        &::after {
+            top: 10px;
+        }
+
+        &::before {
+            bottom: 10px;
+        }
+    }
+
+    .container__aside {
         position: fixed;
         top: 0;
-        left: 0;
-        width: calc(90vw - var(--size-pad));
+        right: 100%;
+        bottom: 0;
+        left: -$size;
+        max-width: calc(90vw - $size);
         height: 100vh;
-        overflow-y: auto;
         background-color: rgba(var(--color-night), 0.8);
         backdrop-filter: blur(30px);
         z-index: 10;
-        padding-right: var(--size-pad);
+        padding: $size 0 $size $size/2;
+        transition: all 200ms ease-in-out;
+        font-size: 120%;
+
+        &.open {
+            left: 0;
+            right: 0;
+
+            .button__close {
+                &::after {
+                    transform: rotate(45deg) translate(5px, 5px);
+                }
+
+                &::before {
+                    transform: rotate(-45deg) translate(7px, -7px);
+                }
+            }
+        }
+    }
+
+    .container__filters {
+        overflow-y: auto;
+        height: 100%;
+        max-width: 100%;
+        padding-right: 20px;
     }
 }

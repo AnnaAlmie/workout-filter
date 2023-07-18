@@ -3,35 +3,40 @@
     border-radius: var(--size-radius);
     transition: all 0.2s ease-in-out;
     will-change: transform;
+
+    &:hover {
+        transform: scale(0.98);
+    }
+
+    &.hide {
+        display: none;
+    }
+
+    &__content {
+        padding: var(--size-initial);
+
+        &-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            &-types {
+                max-width: 80%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: flex-start;
+            }
+        }
+    }
 }
 
-.card:hover {
-    transform: scale(0.98);
-}
-
-.card__content {
-    padding: var(--size-initial);
-}
-
-.card__content-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.card__content-flex-types {
-    max-width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
 
 iframe {
     border: none;
     width: 100%;
     height: auto;
-    min-height: 200px;
+    min-height: 100px;
     aspect-ratio: 16/9;
     border-top-left-radius: var(--size-radius);
     border-top-right-radius: var(--size-radius);
