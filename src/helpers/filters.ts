@@ -13,7 +13,6 @@ export const types: string[] = [
     /* 11 */ "abs&core",
     /* 12 */ "legs",
     /* 13 */ "booty",
-
 ];
 
 interface ILevels {

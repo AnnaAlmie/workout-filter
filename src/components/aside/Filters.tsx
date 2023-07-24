@@ -1,22 +1,14 @@
 import "./filters.scss";
-import { types, levels } from '../../helpers/filters';
 import { useState, ChangeEvent } from 'react';
+import { types, levels } from '../../helpers/filters';
 
-
-export default function Filters() {
-
+export default function Filters({ handleChange }: ChangeEvent<HTMLInputElement> | any) {
     let sortedTypes = types.sort((a, b) => (a > b) ? 1 : -1);
-
     let [openMenu, setOpenMenu] = useState<boolean>(false);
 
     function toogleMenu() {
         setOpenMenu(!openMenu)
         openMenu ? document.body.classList.remove("no-scroll") : document.body.classList.add("no-scroll");
-    }
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(`{${event.target.id}: ${event.target.checked}}`)
-        // 
-        return event.target.id
     }
 
     return (
@@ -29,7 +21,7 @@ export default function Filters() {
                     levels.map(({ level }) => {
                         return (
                             <div className='container__filters__group' key={level}>
-                                <input type="checkbox" id={level} onChange={handleChange} />
+                                <input type="checkbox" id={level} onChange={event => handleChange(event)} />
                                 <label htmlFor={level}>{level}</label>
                             </div>)
                     })
@@ -40,7 +32,7 @@ export default function Filters() {
                     sortedTypes.map(type => {
                         return (
                             <div className='container__filters__group' key={type}>
-                                <input type="checkbox" id={type} onChange={handleChange} />
+                                <input type="checkbox" id={type} onChange={event => handleChange(event)} />
                                 <label htmlFor={type}>{type}</label>
                             </div>)
                     })

@@ -9,31 +9,29 @@ type TCard = {
 
 export default function Card({ card }: TCard) {
     return (
-        <> {card.enable &&
-            <div className="card" style={{ borderColor: levels[card.level].color }}>
-                <YouTube videoId={card.url} />
+        <div className="card" style={{ borderColor: levels[card.level].color }}>
+            <YouTube videoId={card.url} />
 
-                {/* content  */}
-                <div className='card__content'>
-                    <div className='card__content-flex'>
-                        {/* types  */}
-                        <div className='card__content-flex-types'>
-                            {card.type.map((item: number) => {
-                                return <span key={item}>
-                                    #{types[item]}&nbsp;
-                                </span>
-                            })}
-                        </div>
+            {/* content  */}
+            <div className='card__content'>
+                <div className='card__content-flex'>
+                    {/* types  */}
+                    <div className='card__content-flex-types'>
+                        {card.type.map((item: number) => {
+                            return <span key={item}>
+                                #{types[item]}&nbsp;
+                            </span>
+                        })}
+                    </div>
 
-                        {/* level  */}
-                        <div>
-                            <b style={{ color: levels[card.level].color }}>
-                                {levels[card.level].level}
-                            </b>
-                        </div>
+                    {/* level  */}
+                    <div>
+                        <b style={{ color: levels[card.level].color }}>
+                            {levels[card.level].level}
+                        </b>
                     </div>
                 </div>
             </div>
-        } </>
+        </div>
     )
 }

@@ -74,7 +74,7 @@ input[type=checkbox]:checked {
         background-color: rgba(var(--color-night), 0.8);
         backdrop-filter: blur(30px);
         z-index: 10;
-        padding: $size 0 $size $size/2;
+        padding: $size 0 $size calc($size / 2);
         transition: all 200ms ease-in-out;
         font-size: 120%;
 

@@ -1,13 +1,17 @@
 import './app.scss';
+import { useState, useEffect, ChangeEvent } from 'react'
+import { supabase, TData } from '~/utils/supabaseClient';
+import { types, levels } from '~/helpers/filters';
+import cardsInner from "~/helpers/cardsDataInner.json";
 import Filters from '~/components/aside/Filters';
 import Card from '~/components/main/Card';
-import cardsInner from "~/helpers/cardsDataInner.json";
+import IfError from '~/components/main/IfError';
 
-import { useState, useEffect } from 'react'
-import { supabase, TData } from '~/utils/supabaseClient';
 
 export default function App() {
   let [cards, setCards] = useState<TData[]>([]);
+  let [cardsFiltered, setCardsFiltered] = useState<TData[]>([]);
+  let [filters, setFilters] = useState<(string | number)[]>([]);
   let [error, setError] = useState<string>('');
 
   useEffect(() => {
@@ -22,23 +26,59 @@ export default function App() {
     if (error) {
       setError(error.message)
     } else if (data) {
-      setCards(data as TData[])
+      setData(data as TData[])
     }
   }
 
   const setInnerData = () => {
-    setCards(cardsInner as TData[]);
+    setData(cardsInner as TData[]);
     setError('');
   }
 
+  const setData = (dataArray: TData[]) => {
+    setCards(dataArray)
+    setCardsFiltered(dataArray)
+  }
+
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    let newFilters = filters;
+
+    if (event.target.checked) {
+      newFilters.push(event.target.id)
+    } else {
+      newFilters = filters.filter(e => e !== event.target.id)
+    }
+    setFilters(newFilters)
+
+    if (!newFilters.length) {
+      setCardsFiltered(cards);
+      return
+    }
+
+    let filteredArray: TData[] = [];
+    newFilters.forEach(filter => {
+      cards.filter(item => {
+        const indexType = types.indexOf(filter as any);
+        if (levels[item.level].level == filter || item.type.includes(indexType)) {
+          return filteredArray.push(item)
+        }
+      })
+    })
+
+    setCardsFiltered(Array.from(new Set(filteredArray)));
+  }
+
   return (
-    <div className="container__main">
-      <Filters />
+    <div className={`container__main ${!!error ? 'error' : ''}`}>
+      <Filters handleChange={handleChange} />
       {error
         ? <IfError error={error} setInnerData={setInnerData} />
         : <div className="container__cards container">
           <>{
-            cards.map(card => <Card card={card} key={card.id.toString()} />)
+            (cardsFiltered.length == 0) && !!(filters.length)
+              ? <div>No match</div>
+              : cardsFiltered.map(card => <Card card={card} key={card.id.toString()} />)
           }</>
         </div>
       }
@@ -46,24 +86,3 @@ export default function App() {
   )
 }
 
-interface IProps {
-  error: string,
-  setInnerData: () => void
-}
-function IfError({ error, setInnerData }: IProps) {
-  return (
-    <div className="container">
-      <div>
-        <b>Error type:</b> {error}
-      </div>
-      <br />
-      <div>
-        Якщо ви побачили цю помилку, то скоріш за все безкоштовна версія supabase призупинила свою роботу.
-      </div>
-      <div>
-        Але ви можете подивитись варіант з json файлу
-      </div>
-      <button onClick={setInnerData}>Завантажити</button>
-    </div>
-  )
-}

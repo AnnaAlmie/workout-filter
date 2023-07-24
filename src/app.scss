@@ -9,6 +9,11 @@
         margin: var(--size-initial);
         border-radius: var(--size-radius);
         background-color: var(--color-dark);
+
+        &.error aside {
+            pointer-events: none;
+            opacity: .5;
+        }
     }
 
     &__aside {
